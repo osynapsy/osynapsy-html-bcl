@@ -1,6 +1,6 @@
 {
     "name": "osynapsy/osynapsy-html-bcl",
-    "version": "0.9.3",
+    "version": "0.1",
     "homepage": "http://www.osynapsy.net/html-bcl",
     "type": "library",
     "description": "Osynapsy bootstrap components library",
