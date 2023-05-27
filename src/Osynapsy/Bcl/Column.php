@@ -82,7 +82,7 @@ class Column extends Base
     public function push($label, $object, $sublabel = '', $class = 'form-group')
     {
         if ($object instanceof Tag) {
-            $object->atttribute('data-label', strip_tags(is_array($label) ? $label[0] : $label));
+            $object->attribute('data-label', strip_tags(is_array($label) ? $label[0] : $label));
         }
         $this->add(new FormGroup($object, $label, $class))->setInfo($sublabel);
         return $this;
