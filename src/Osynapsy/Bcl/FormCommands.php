@@ -26,7 +26,7 @@ trait FormCommands
     public function buttonCloseModalFactory()
     {
         $Button = new Button('btn_close', '<span class="fa fa-times"></span> Chiudi', 'command-close-modal btn-secondary');
-        $Button->atttribute('onclick', "parent.$('#amodal').modal('hide');");
+        $Button->attribute('onclick', "parent.Osynapsy.modal.instance.hide();");
         return $Button;
     }
 
