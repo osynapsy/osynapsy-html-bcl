@@ -50,6 +50,7 @@ class Form extends Base
     
     public function preBuild()
     {
+        $this->body->addClass('m-2 p-2 bg-white');
         if ($this->head) {
             $this->add($this->head);
         }
@@ -112,7 +113,7 @@ class Form extends Base
         if (empty($this->foot)) {
             $this->foot = new Tag('div', null, trim('d-flex mt-2 '.$this->footClass));
             $this->foot->style = $this->footStyle;
-            $this->footLeft = $this->foot->add(new Tag('div', null, 'p-1 mr-auto'));
+            $this->footLeft = $this->foot->add(new Tag('div', null, 'p-1 me-auto mr-auto'));
             $this->footRight = $this->foot->add(new Tag('div', null, 'p-1'));
         }
         $column = $right ? $this->footRight : $this->footLeft;
