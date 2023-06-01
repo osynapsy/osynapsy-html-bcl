@@ -105,7 +105,7 @@ class Form extends Base
             return;
         }
         $this->foot->addClass($class);
-        $this->foot->att('style', 'background-color: rgba(255,255,255,0.8); border-top: 1px solid #ddd;');
+        $this->foot->attribute('style', 'background-color: rgba(255,255,255,0.8); border-top: 1px solid #ddd;');
     }
 
     public function foot($obj, $right = false)
