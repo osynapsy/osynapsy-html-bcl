@@ -35,12 +35,11 @@ class Panel extends Base
     private $commands = [];
     private $title;
 
-    public function __construct($id, $title='', $class = ' panel-default', $tag = 'div')
+    public function __construct($id, $class = ' panel-default', $tag = 'div')
     {
         parent::__construct($tag, $id);
         $this->classCss['main'] = sprintf('panel ', $class);
-        $this->panelSections['body'] = new Tag('div');
-        $this->title = $title;
+        $this->panelSections['body'] = new Tag('div');        
     }
 
     public function addCommands(array $commands = [])
@@ -52,10 +51,10 @@ class Panel extends Base
     public function preBuild()
     {
         $this->addClass($this->classCss['main']);
-        if (empty($this->title)) {
+        if (!empty($this->title)) {
             $this->getHead()->add($this->titleFactory());
         }
-        if (empty($this->commands)) {
+        if (!empty($this->commands)) {
             $this->getHead()->add($this->commandsFactory());
         }        
         foreach ($this->panelSections as $key => $section){
@@ -66,18 +65,18 @@ class Panel extends Base
         }
     }
 
+    protected function titleFactory()
+    {                        
+        return sprintf('<div class="%s float-start">%s</div>', $this->classCss['title'], $this->title);
+    }
+    
     protected function commandsFactory()
     {                
-        $container = new Tag('div', null, 'panel-commands pull-right');
+        $container = new Tag('div', null, 'float-end panel-commands mb-2');
         $container->addFromArray($this->commands);        
         return $container;
     }
-
-    protected function titleFactory()
-    {                        
-        return sprintf('<div class="%s pull-left">%s</div>', $this->classCss['title'], $this->title);
-    }
-
+    
     public function addRow($class = 'row')
     {
         $this->currentRow = $this->getBody()->add(new Tag('div', null, $class));
@@ -127,5 +126,11 @@ class Panel extends Base
             $this->classCss['title'] = $title;
         }
         return $this;
+    }
+    
+    public function setTitle($title = '', array $commands = [])
+    {
+        $this->title = $title;
+        $this->commands = $commands;
     }
 }
