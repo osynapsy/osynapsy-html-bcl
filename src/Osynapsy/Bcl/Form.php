@@ -50,7 +50,7 @@ class Form extends Base
     
     public function preBuild()
     {
-        $this->body->addClass('m-2 p-2 bg-white');
+        $this->body->addClass('m-2 p-2');
         if ($this->head) {
             $this->add($this->head);
         }
