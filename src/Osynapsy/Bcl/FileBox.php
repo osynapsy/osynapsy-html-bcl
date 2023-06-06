@@ -13,6 +13,8 @@ namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\Input;
+use Osynapsy\Html\Component\Hidden;
 use Osynapsy\Html\DOM;
 
 class FileBox extends Base
@@ -20,44 +22,70 @@ class FileBox extends Base
     protected $fileBox;
     protected $deleteCommand;
     public $showImage = false;
-    public $span;
+    protected $previewBox;
+    protected $labelBox;
+    protected $hiddenBox;
 
-    public function __construct($name, $postfix = false, $prefix = true)
-    {
-         /*
-            http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/
-            <span class="input-group-btn">
-                <span class="btn btn-primary btn-file">
-                    Browse&hellip; <input type="file" multiple>
-                </span>
-            </span>
-        */
+    public function __construct($name, $showSendButton = true, $showImagePreview = false)
+    {        
         DOM::requireJs('bcl/filebox/script.js');
-        parent::__construct('dummy', $name);
-        $this->span = $this->add(new Tag('span'));
-        $inputGroup = $this->add(new Tag('div', null, 'input-group'));
-        $inputGroup->add(new Tag('span', null, 'input-group-btn input-group-prepend'))
-            ->add(new Tag('span', null, 'btn btn-primary btn-file'))
-            ->add('<input type="file" name="'.$name.'"><span class="fa fa-folder-open"></span>');
-        $inputGroup->add('<input type="text" class="form-control" readonly>');
-        if (!$postfix) {
-            return;
+        parent::__construct('div', $name.'_container');
+        $this->addClass('bcl-filebox');
+        $this->add($this->hiddenFactory($name));
+        if ($showImagePreview) {
+            $this->add($this->previewFactory($name));
         }
-        $inputGroup->add($this->postfixGroupButtonFactory());
+        $this->add($this->inputGroupFactory($name, $showSendButton));        
     }
     
-    protected function postfixGroupButtonFactory()
+    protected function hiddenFactory($name)
     {
-        $span = new Tag('span', null, 'input-group-btn input-group-append');
-        $span->add($this->buttonSendFileFactory());
-        return $span;
+        return $this->hiddenBox = new Hidden($name);        
     }
     
-    protected function buttonSendFileFactory()
+    protected function previewFactory($name)
     {
-        $Button = new Tag('button', null, 'btn btn-primary');
-        $Button->attribute('type', 'submit');
-        $Button->add('Send');
+        return $this->previewBox = new Tag('div', $name.'_preview','bcl-filebox-preview pb-1');
+    }
+    
+    protected function inputGroupFactory($name, $showSendButton)
+    {
+        $inputGroup = new Tag('div', null, 'input-group');                
+        $inputGroup->add($this->buttonBrowseFactory($name));
+        $inputGroup->add($this->fileBoxFactory($name));
+        $inputGroup->add($this->fieldLabelFileBoxFactory());
+        if ($showSendButton) {
+            $inputGroup->add($this->buttonSendFileFactory($name, $showSendButton));
+        }
+        return $inputGroup;
+    }
+    
+    protected function buttonBrowseFactory($componentId)
+    {
+        $Button = new Tag('label', null, 'input-group-text btn btn-outline-primary btn-file');
+        $Button->attribute('for', $componentId . '_file');
+        $Button->add('...');
+        return $Button;
+    }
+    
+    protected function fileBoxFactory($name)
+    {
+        $id = $name . '_file';
+        $FileBox = new Input($id, $id, 'file');
+        return $FileBox->addClass('d-none');
+    }
+    
+    protected function fieldLabelFileBoxFactory()
+    {
+        $this->labelBox = new TextBox(false);
+        $this->labelBox->setReadOnly(true);
+        return $this->labelBox;
+    }
+    
+    protected function buttonSendFileFactory($name, $label)
+    {        
+        $Button = new Button($name.'-send', $label === true ? 'Invia' : $label, 'btn-outline-primary bcl-filebox-send');        
+        $Button->setAction('upload', [$name]);
         return $Button;
     }
 
@@ -92,5 +120,14 @@ class FileBox extends Base
             $button->att('data-confirm', $confirmMessage);
         }
         $this->deleteCommand = $button;
+    }
+    
+    public function setValue($value)
+    {        
+        $this->hiddenBox->setValue($value);        
+        if ($this->previewBox) {
+            $this->previewBox->add(sprintf('<img src="%s" style="max-width: 100%%">', $value));
+        }
+        return $this;
     }
 }
