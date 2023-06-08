@@ -13,7 +13,7 @@ final class FileBoxTest extends TestCase
     {
         $FileBox = new FileBox('test');
         $this->assertEquals(
-            '<span></span><div class="input-group"><span class="input-group-btn input-group-prepend"><span class="btn btn-primary btn-file"><input type="file" name="test"><span class="fa fa-folder-open"></span></span></span><input type="text" class="form-control" readonly></div>',
+            '<div id="test_container" class="bcl-filebox"><input id="test" type="hidden" name="test"><div class="input-group"><label class="input-group-text btn btn-outline-primary btn-file" for="test_file">...</label><input id="test_file" type="file" name="test_file" class="d-none"><input type="text" name="" class="form-control" readonly="readonly"><button id="test-send" name="test-send" type="button" class="btn btn-outline-primary bcl-filebox-send click-execute" data-action="upload" data-action-parameters="test">Invia</button></div></div>',
             $this->tabAndEolRemove((string) $FileBox)
         );
     }   

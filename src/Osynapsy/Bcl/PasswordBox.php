@@ -11,7 +11,7 @@
 
 namespace Osynapsy\Bcl;
 
-class PasswordBox extends \Osynapsy\Html\Component\Password
+class PasswordBox extends \Osynapsy\Html\Component\InputPassword
 {
     public function __construct($name)
     {

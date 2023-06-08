@@ -13,7 +13,7 @@ final class AccordionTest extends TestCase
     {
         $Accordion = new Accordion('accordion');
         $this->assertEquals(
-            '<div id="accordion" class="accordion osy-panel-accordion" role="tablist"><input id="accordion" type="hidden" name="accordion"></div>',
+            '<div id="accordion" class="accordion osy-panel-accordion" role="tablist"><input id="accordion" type="hidden" name="accordion" value="0"></div>',
             $this->tabAndEolRemove((string) $Accordion)
         );
     }
@@ -23,7 +23,7 @@ final class AccordionTest extends TestCase
         $Accordion = new Accordion('accordion');
         $Accordion->addPanel('testPanel');
         $this->assertEquals(
-            '<div id="accordion" class="accordion osy-panel-accordion" role="tablist"><input id="accordion" type="hidden" name="accordion"><div id="accordion_0" class="card"><div class="card-header"><div class="panel-commands pull-right"></div></div><div id="accordion_0_body" data-parent="#accordion" class="card-body collapse show"></div></div></div>',
+            '<div id="accordion" class="accordion osy-panel-accordion" role="tablist"><input id="accordion" type="hidden" name="accordion" value="0"><div id="accordion_0" class="card"><div id="accordion_0_body" data-parent="#accordion" class="card-body collapse show"></div></div></div>',
             $this->tabAndEolRemove((string) $Accordion)
         );
     }

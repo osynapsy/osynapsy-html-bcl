@@ -12,7 +12,7 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputHidden;
 use Osynapsy\Html\DOM;
 
 class LabelBox extends Base
@@ -25,7 +25,7 @@ class LabelBox extends Base
         DOM::requireCss('bcl/labelbox/style.css');
         parent::__construct('div', $id.'_labelbox');
         $this->addClass('osynapsy-labelbox');
-        $this->hiddenBox = $this->add(new Hidden($id));
+        $this->hiddenBox = $this->add(new InputHidden($id));
         $this->add($label);
     }
 

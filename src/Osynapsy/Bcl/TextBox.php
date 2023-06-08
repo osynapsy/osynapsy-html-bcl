@@ -11,7 +11,7 @@
 
 namespace Osynapsy\Bcl;
 
-class TextBox extends \Osynapsy\Html\Component\TextBox
+class TextBox extends \Osynapsy\Html\Component\InputText
 {    
     public function __construct($name, $class = '')
     {

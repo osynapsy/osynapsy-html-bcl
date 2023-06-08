@@ -14,7 +14,8 @@ namespace Osynapsy\Bcl;
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\Component\Base;
 use Osynapsy\Html\Component\Input;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputHidden;
+use Osynapsy\Html\Component\InputFile;
 use Osynapsy\Html\DOM;
 
 class FileBox extends Base
@@ -40,7 +41,7 @@ class FileBox extends Base
     
     protected function hiddenFactory($name)
     {
-        return $this->hiddenBox = new Hidden($name);        
+        return $this->hiddenBox = new InputHidden($name);        
     }
     
     protected function previewFactory($name)
@@ -71,7 +72,7 @@ class FileBox extends Base
     protected function fileBoxFactory($name)
     {
         $id = $name . '_file';
-        $FileBox = new Input($id, $id, 'file');
+        $FileBox = new InputFile($id);
         return $FileBox->addClass('d-none');
     }
     

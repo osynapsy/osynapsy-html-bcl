@@ -13,7 +13,7 @@ final class FormGroupTest extends TestCase
     {
         $FormGroup = new FormGroup('<input type="text" name="testinput" value="2">','test label');
         $this->assertEquals(
-            '<div class="form-group"><div class="d-flex"><label class="font-weight-500 text-nowrap mr-auto">test label</label></div><input type="text" name="testinput" value="2"></div>',
+            '<div class="form-group"><div class="d-flex"><label class="font-weight-500 text-nowrap me-auto mr-auto">test label</label></div><input type="text" name="testinput" value="2"></div>',
             $this->tabAndEolRemove((string) $FormGroup)
         );
     }   

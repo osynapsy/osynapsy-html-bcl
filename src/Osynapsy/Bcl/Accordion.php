@@ -15,7 +15,7 @@ namespace Osynapsy\Bcl;
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\DOM;
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputHidden;
 
 //Costruttore del pannello html
 class Accordion extends Base
@@ -36,7 +36,7 @@ class Accordion extends Base
 
     public function preBuild()
     {
-        $this->add(new Hidden($this->id));
+        $this->add(new InputHidden($this->id))->setValue($this->defaultOpen);
         foreach($this->panels as $panel) {
             $this->add($panel);
         }

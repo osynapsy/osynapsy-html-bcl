@@ -9,7 +9,7 @@ final class SwitcherTest extends TestCase
 {
     use StringClean;
 
-    public function testCheckBox(): void
+    public function testSwitcher(): void
     {
         $Switcher = new Switcher('test','testLabel');
         $this->assertEquals(
@@ -18,7 +18,7 @@ final class SwitcherTest extends TestCase
         );
     }
 
-    public function testCheckBoxDisabled(): void
+    public function testSwitcherDisabled(): void
     {
         $Switcher = new Switcher('test', 'testLabel');
         $Switcher->setDisabled(true);
@@ -28,7 +28,7 @@ final class SwitcherTest extends TestCase
         );
     }
 
-    public function testCheckBoxChecked(): void
+    public function testSwitcherChecked(): void
     {
         $_REQUEST['chkTest'] = '1';
         $Switcher = new Switcher('test', 'testLabel');

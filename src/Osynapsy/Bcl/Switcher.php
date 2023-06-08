@@ -13,8 +13,8 @@ namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Check;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputCheckBox;
+use Osynapsy\Html\Component\InputHidden;
 
 /**
  * Description of Switcher
@@ -37,14 +37,14 @@ class Switcher extends Base
     
     protected function hiddenFactory($id)
     {
-        $Hidden = new Hidden($id, $id);
+        $Hidden = new InputHidden($id, $id);
         $Hidden->setValue('0');
         return $Hidden;
     }
     
     protected function checkFactory($id, $value)
     {
-        $Check = new Check($id, $id, $value);
+        $Check = new InputCheckBox($id, $id, $value);
         $Check->addClass('custom-control-input');
         return $Check;
     }

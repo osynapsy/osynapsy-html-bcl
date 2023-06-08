@@ -12,7 +12,7 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputHidden;
 
 class Alert extends Base
 {
@@ -40,7 +40,7 @@ class Alert extends Base
     
     protected function hiddenFactory($id)
     {
-        $Hidden = new Hidden($id);
+        $Hidden = new InputHidden($id);
         $Hidden->setValue('0');
         return $Hidden;
     }

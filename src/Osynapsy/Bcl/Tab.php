@@ -14,7 +14,7 @@ namespace Osynapsy\Bcl;
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\DOM;
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Hidden;
+use Osynapsy\Html\Component\InputHidden;
 
 /**
  * Description of Tab
@@ -35,7 +35,7 @@ class Tab extends Base
         DOM::requireJs('bcl/tab/script.js');
         parent::__construct('div');
         $this->id = $id;        
-        $this->add(new Hidden($id));
+        $this->add(new InputHidden($id));
         $this->ul = $this->add(new Tag('ul'))->attributes([
             'id' => $id.'_nav',
             'class' => 'nav nav-tabs mt-1',
