@@ -13,6 +13,8 @@ namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\Button;
+use Osynapsy\Html\DOM;
 
 /**
  * Description of Carousel
@@ -29,6 +31,13 @@ class Carousel extends Base
         parent::__construct('div', $id);
         $this->showCommands = $showCommands;
         $this->showIndicators = $showIndicators;
+        $this->addClass('carousel slide');
+        DOM::requireJsCode(
+            sprintf(
+                "const carousel = new bootstrap.Carousel(document.querySelector('#%s'), {interval: 3000, touch: false});",
+                $this->id
+            )
+        );
     }
 
     public function preBuild()
@@ -38,9 +47,9 @@ class Carousel extends Base
         }
         $inner = $this->add(new Tag('div', null, 'carousel-inner'));
         foreach($this->dataset as $key => $rec) {
-            $item = $inner->add($this->buildItem($rec));
+            $item = $inner->add($this->carouselItemFactory($rec));
             if (empty($key)) {
-                $item->attribute('class', 'active', true);
+                $item->addClass('active');
             }
         }
         if ($this->showCommands) {
@@ -48,41 +57,46 @@ class Carousel extends Base
         }
     }
 
-    private function buildItem($rec)
+    protected function carouselItemFactory($rec)
     {
-        $div = new Tag('div', null, 'carousel-item');
-        $div->add(new Tag('img', null, 'd-block w-100'))->attribute('src', array_pop($rec));
-        if (empty($rec)) {
-            $this->buildItemCaption($rec, $div);
+        $carauselItem = new Tag('div', null, 'carousel-item');
+        $carauselItem->add(new Tag('img', null, 'd-block w-100 opacity-25'))->attribute('src', $rec[1]);
+        if (!empty($rec[0])) {
+            $carauselItem->add($this->captionItemFactory($rec[0]));
         }
-        return $div;
+        return $carauselItem;
     }
 
-    private function buildItemCaption($rec, $item)
+    protected function captionItemFactory($rec)
     {                
-        $caption = $item->add(new Tag('div', null, 'carousel-caption d-none d-md-block'));
-        $texts = array_values($rec);
-        if (empty($texts[0])) {
-            $caption->add(new Tag('h5'))->add($texts[0]);
+        $caption = new Tag('div', null, 'carousel-caption d-none d-md-block');
+        list($title, $description) = array_values($rec);
+        if (!empty($title)) {
+            $caption->add(new Tag('h5'))->add($title);
         }
-        if (empty($texts[1])) {
-            $caption->add(new Tag('p'))->add($texts[1]);
+        if (!empty($description)) {
+            $caption->add(new Tag('p'))->add($description);
+        }
+        return $caption;
+    }
+
+    private function buildCommands()
+    {
+        foreach(['prev','next'] as $command) {
+            $this->add($this->buttonCommandFactory($command));
         }
     }
 
-    private function buildCommands($inner)
+    protected function buttonCommandFactory($command)
     {
-        foreach(['prev','next'] as $cmd) {
-            $a = $inner->add(new Tag('a', null, 'carousel-control-'.$cmd));
-            $a->attributes([
-                'href' => "#carouselExampleControls",
-                'role'=> "button",
-                'data-slide' => "prev"
-            ]);
-            $a->add(new Tag('span', null, "carousel-control-{$cmd}-icon"))
-              ->attribute('aria-hidden', "true");
-            $a->add(new Tag('span', null, 'sr-only'))->add($cmd);
-        }
+        $Button = new Button(false, '', 'carousel-control-'.$command);
+        $Button->attributes([
+            'data-bs-target' => sprintf('#%s', $this->id),
+            'data-bs-slide' => $command
+        ]);
+        $Button->add(new Tag('span', null, sprintf('carousel-control-%s-icon', $command)))->attribute('aria-hidden', 'true');
+        $Button->add(new Tag('span', null, 'visually-hidden'))->add($command);
+        return $Button;
     }
 
     private function buildIndicators()
@@ -92,5 +106,29 @@ class Carousel extends Base
             $li = $ol->add(new Tag('li', null, empty($key) ? 'active' : null));
             $li->atttribute(['data-target' => "#{$this->id}", "data-slide-to" => $key]);
         }
+    }
+
+    public function autoPlay($condition)
+    {
+        if ($condition) {
+            $this->attribute('data-bs-ride', 'carousel');
+        }
+    }
+
+    public function darkTheme($condition)
+    {
+        if ($condition) {
+            $this->attribute('data-bs-theme', 'dark');
+        }
+    }
+
+    public function addSlide(array $caption, $slideUrl, $interval = 3000)
+    {
+        $this->dataset[] = [$caption, $slideUrl, $interval];
+    }
+
+    public function setHeight($height)
+    {
+        $this->addStyle('height', $height.'px');
     }
 }
