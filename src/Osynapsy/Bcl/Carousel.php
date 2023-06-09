@@ -66,7 +66,7 @@ class Carousel extends Base
             $carauselItem->add($this->captionItemFactory($rec[0]));
         }
         if (!empty($this->height)) {
-            $image->addStyle('max-height', $this->height.'px');
+            $image->addStyle('max-height', '100%');
             $carauselItem->addStyle('overflow', 'hidden');
         }
         return $carauselItem;
@@ -136,5 +136,6 @@ class Carousel extends Base
     {
         $this->height = $height;
         $this->addStyle('max-height', $height.'px');
+        $this->addStyle('overflow', 'hidden');
     }
 }
