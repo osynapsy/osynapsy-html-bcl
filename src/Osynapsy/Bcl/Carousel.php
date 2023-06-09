@@ -25,7 +25,8 @@ class Carousel extends Base
 {
     private $showCommands;
     private $showIndicators;
-
+    private $height = 0;
+    
     public function __construct($id, $showCommands = false, $showIndicators = false)
     {
         parent::__construct('div', $id);
@@ -60,9 +61,13 @@ class Carousel extends Base
     protected function carouselItemFactory($rec)
     {
         $carauselItem = new Tag('div', null, 'carousel-item');
-        $carauselItem->add(new Tag('img', null, 'd-block w-100 opacity-25'))->attribute('src', $rec[1]);
+        $image = $carauselItem->add(new Tag('img', null, 'd-block w-100 opacity-25'))->attribute('src', $rec[1]);
         if (!empty($rec[0])) {
             $carauselItem->add($this->captionItemFactory($rec[0]));
+        }
+        if (!empty($this->height)) {
+            $image->addStyle('max-height', $this->height.'px');
+            $carauselItem->addStyle('overflow', 'hidden');
         }
         return $carauselItem;
     }
@@ -129,6 +134,7 @@ class Carousel extends Base
 
     public function setHeight($height)
     {
-        $this->addStyle('height', $height.'px');
+        $this->height = $height;
+        $this->addStyle('max-height', $height.'px');
     }
 }
