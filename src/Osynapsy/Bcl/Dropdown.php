@@ -37,10 +37,9 @@ class Dropdown extends Base
 
     private function mainButtonFactory($name, $label)
     {
-        $Button = new Button($name.'_btn', $label, 'dropdown-toggle');
+        $Button = new Button($name.'_btn', $label, 'btn-primary dropdown-toggle');
         $Button->attributes([
-            'data-toggle' => 'dropdown',
-            'aria-haspopup' => 'true',
+            'data-bs-toggle' => 'dropdown',            
             'aria-expanded' => 'false'
         ]);
         return $Button;
