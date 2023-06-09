@@ -80,15 +80,17 @@ class Panel extends Base
     public function addRow($class = 'row')
     {
         $this->currentRow = $this->getBody()->add(new Tag('div', null, $class));
+        $this->currentRow->length = 0;
         return $this->currentRow;
     }
 
     public function addColumn($colspan = 12, $offset = 0) : Column
     {
-        if (empty($this->currentRow)) {
+        if (empty($this->currentRow) || ($this->currentRow->length + $colspan + $offset > 12)) {
             $this->addRow();
         }
         $this->currentColumn = $this->currentRow->add(new Column($colspan, $offset));
+        $this->currentRow->length += $colspan;
         return $this->currentColumn;
     }
 
