@@ -156,5 +156,10 @@ class Form extends Base
             $column->add('<h4><i>'.$subTitle.'</i></h4>');
         }
         return $objTitle;
-    }   
+    }
+
+    public function __call($name, $arguments)
+    {
+        return call_user_func_array([$this->getPanel(), $name], $arguments);
+    }
 }
