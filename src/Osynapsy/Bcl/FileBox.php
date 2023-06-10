@@ -92,10 +92,11 @@ class FileBox extends Base
 
     public function preBuild()
     {
-        if (empty($_REQUEST[$this->id])) {
-            return;
+        $filePath = $this->hiddenBox->getValue();
+        if ($this->previewBox && !empty($filePath)) {
+            $this->previewBox->add(sprintf('<img src="%s" style="max-width: 100%%">', $filePath));
         }
-        $this->downloadFileFactory();
+        //$this->downloadFileFactory();
     }
 
     protected function downloadFileFactory()
@@ -126,9 +127,6 @@ class FileBox extends Base
     public function setValue($value)
     {        
         $this->hiddenBox->setValue($value);        
-        if ($this->previewBox) {
-            $this->previewBox->add(sprintf('<img src="%s" style="max-width: 100%%">', $value));
-        }
         return $this;
     }
 }
