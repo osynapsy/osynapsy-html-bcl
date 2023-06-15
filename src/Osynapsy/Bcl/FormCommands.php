@@ -33,7 +33,7 @@ trait FormCommands
     public function buttonDeleteFactory($label = true, $alert = 'Sei sicuro di voler procedere con l\'eliminazione ?')
     {        
         $Button = new Button('btn_delete', $label === true ? '<span class="fa fa-trash-o"></span> Elimina' : $label, 'btn-danger');
-        $Button->setAction('delete', [], 'click-execute', $alert);
+        $Button->setAction('delete', [], $alert);
         return $Button;
     }
 
