@@ -100,12 +100,12 @@ class Form extends Base
     {
         if (empty($this->foot)) {
             $this->footClass = $class;
-            $this->footStyle = 'background-color: rgba(255,255,255,0.8); border-top: 1px solid #ddd;';
-            $this->addClass('mb-5');
+            $this->footStyle = 'background-color: rgba(255,255,255,0.8); border-top: 1px solid #ddd;';            
             return;
         }
         $this->foot->addClass($class);
         $this->foot->attribute('style', 'background-color: rgba(255,255,255,0.8); border-top: 1px solid #ddd;');
+        $this->addClass('mb-5');
     }
 
     public function foot($obj, $right = false)
