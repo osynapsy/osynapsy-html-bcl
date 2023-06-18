@@ -13,7 +13,6 @@ namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
 use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\Component\Input;
 use Osynapsy\Html\Component\InputHidden;
 use Osynapsy\Html\Component\InputFile;
 use Osynapsy\Html\DOM;
@@ -21,22 +20,18 @@ use Osynapsy\Html\DOM;
 class FileBox extends Base
 {
     protected $fileBox;
-    protected $deleteCommand;
-    public $showImage = false;
+    protected $deleteCommand;    
     protected $previewBox;
     protected $labelBox;
     protected $hiddenBox;
 
-    public function __construct($name, $showSendButton = true, $showImagePreview = false)
+    public function __construct($name)
     {        
         DOM::requireJs('bcl/filebox/script.js');
         parent::__construct('div', $name.'_container');
         $this->addClass('bcl-filebox');
-        $this->add($this->hiddenFactory($name));
-        if ($showImagePreview) {
-            $this->add($this->previewFactory($name));
-        }
-        $this->add($this->inputGroupFactory($name, $showSendButton));        
+        $this->add($this->hiddenFactory($name));        
+        $this->add($this->inputGroupFactory($name));
     }
     
     protected function hiddenFactory($name)
@@ -44,20 +39,13 @@ class FileBox extends Base
         return $this->hiddenBox = new InputHidden($name);        
     }
     
-    protected function previewFactory($name)
-    {
-        return $this->previewBox = new Tag('div', $name.'_preview','bcl-filebox-preview pb-1');
-    }
-    
     protected function inputGroupFactory($name, $showSendButton)
     {
-        $inputGroup = new Tag('div', null, 'input-group');                
-        $inputGroup->add($this->buttonBrowseFactory($name));
-        $inputGroup->add($this->fileBoxFactory($name));
+        $inputGroup = new Tag('div', null, 'input-group');
+        $inputGroup->add($this->buttonSendFileFactory($name, $showSendButton));
         $inputGroup->add($this->fieldLabelFileBoxFactory());
-        if ($showSendButton) {
-            $inputGroup->add($this->buttonSendFileFactory($name, $showSendButton));
-        }
+        $inputGroup->add($this->fileBoxFactory($name));
+        $inputGroup->add($this->buttonBrowseFactory($name));
         return $inputGroup;
     }
     
@@ -85,19 +73,10 @@ class FileBox extends Base
     
     protected function buttonSendFileFactory($name, $label)
     {        
-        $Button = new Button($name.'-send', $label === true ? 'Invia' : $label, 'btn-outline-primary bcl-filebox-send');        
+        $Button = new Button($name.'-send', $label === true ? 'Invia' : $label, 'btn-outline-primary bcl-filebox-send d-none');
         $Button->setAction('upload', [$name]);
         return $Button;
-    }
-
-    public function preBuild()
-    {
-        $filePath = $this->hiddenBox->getValue();
-        if ($this->previewBox && !empty($filePath)) {
-            $this->previewBox->add(sprintf('<img src="%s" style="max-width: 100%%">', $filePath));
-        }
-        //$this->downloadFileFactory();
-    }
+    }   
 
     protected function downloadFileFactory()
     {
