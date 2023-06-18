@@ -39,10 +39,10 @@ class FileBox extends Base
         return $this->hiddenBox = new InputHidden($name);        
     }
     
-    protected function inputGroupFactory($name, $showSendButton)
+    protected function inputGroupFactory($name)
     {
         $inputGroup = new Tag('div', null, 'input-group');
-        $inputGroup->add($this->buttonSendFileFactory($name, $showSendButton));
+        $inputGroup->add($this->buttonSendFileFactory($name));
         $inputGroup->add($this->fieldLabelFileBoxFactory());
         $inputGroup->add($this->fileBoxFactory($name));
         $inputGroup->add($this->buttonBrowseFactory($name));
@@ -71,9 +71,9 @@ class FileBox extends Base
         return $this->labelBox;
     }
     
-    protected function buttonSendFileFactory($name, $label)
+    protected function buttonSendFileFactory($name, $label = 'Invia')
     {        
-        $Button = new Button($name.'-send', $label === true ? 'Invia' : $label, 'btn-outline-primary bcl-filebox-send d-none');
+        $Button = new Button($name.'-send', $label, 'btn-outline-primary bcl-filebox-send d-none');
         $Button->setAction('upload', [$name]);
         return $Button;
     }   
