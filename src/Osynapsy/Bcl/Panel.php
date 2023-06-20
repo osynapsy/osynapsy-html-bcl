@@ -33,6 +33,7 @@ class Panel extends Base
     private $currentRow = null;
     private $currentColumn = null;    
     private $commands = [];
+    protected $rowClass = 'row mb-4';
     private $title;
 
     public function __construct($id, $class = ' panel-default', $tag = 'div')
@@ -77,9 +78,9 @@ class Panel extends Base
         return $container;
     }
     
-    public function addRow($class = 'row mb-1')
+    public function addRow()
     {
-        $this->currentRow = $this->getBody()->add(new Tag('div', null, $class));
+        $this->currentRow = $this->getBody()->add(new Tag('div', null, $this->rowClass));
         $this->currentRow->length = 0;
         return $this->currentRow;
     }
@@ -134,5 +135,10 @@ class Panel extends Base
     {
         $this->title = $title;
         $this->commands = $commands;
+    }
+
+    public function setRowClass($secondaryClass, $primaryClass = 'row')
+    {
+        $this->rowClass = $primaryClass . ' ' . $secondaryClass;
     }
 }
