@@ -78,9 +78,9 @@ class Panel extends Base
         return $container;
     }
     
-    public function addRow()
+    public function addRow($class = null)
     {
-        $this->currentRow = $this->getBody()->add(new Tag('div', null, $this->rowClass));
+        $this->currentRow = $this->getBody()->add(new Tag('div', null, $class ?? $this->rowClass));
         $this->currentRow->length = 0;
         return $this->currentRow;
     }
