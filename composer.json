@@ -1,6 +1,6 @@
 {
     "name": "osynapsy/osynapsy-html-bcl5",
-    "version": "0.1",
+    "version": "0.8",
     "homepage": "http://www.osynapsy.net/html-bcl5",
     "type": "library",
     "description": "Osynapsy bootstrap components library",
@@ -24,12 +24,12 @@
         }
     },
     "scripts": {
-        "post-update-cmd": [
+        "post-package-update": [
             "rm -rf public/assets/vendor/bootstrap",
-            "mkdir -p public/assets/vendor/bootstrap",
-            "cp -R vendor/twbs/bootstrap/dist public/assets/vendor/bootstrap",
             "rm -rf public/assets/vendor/osynapsy/bcl5",
+            "mkdir -p public/assets/vendor/bootstrap",
             "mkdir -p public/assets/vendor/osynapsy/",
+            "cp -R vendor/twbs/bootstrap/dist public/assets/vendor/bootstrap",                        
             "cp -R assets/bcl5 public/assets/vendor/osynapsy/"
         ]
     }
