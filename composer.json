@@ -29,8 +29,8 @@
             "mkdir -p public/assets/vendor/bootstrap",
             "cp -R vendor/twbs/bootstrap/dist public/assets/vendor/bootstrap",
             "rm -rf public/assets/vendor/osynapsy/bcl5",
-            "mkdir -p public/assets/vendor/osynapsy/bcl5",
-            "cp -R assets/bcl5 public/assets/vendor/osynapsy/bcl5"
+            "mkdir -p public/assets/vendor/osynapsy/",
+            "cp -R assets/bcl5 public/assets/vendor/osynapsy/"
         ]
     }
 }
