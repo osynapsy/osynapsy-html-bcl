@@ -31,6 +31,7 @@ class Panel extends AbstractComponent
     ];
 
     private $currentRow = null;
+    private $currentRowLength = 0;
     private $currentColumn = null;    
     private $commands = [];
     protected $rowClass = 'row mb-4';
@@ -81,17 +82,17 @@ class Panel extends AbstractComponent
     public function addRow($class = null)
     {
         $this->currentRow = $this->getBody()->add(new Tag('div', null, $class ?? $this->rowClass));
-        $this->currentRow->length = 0;
+        $this->currentRowLength = 0;
         return $this->currentRow;
     }
 
     public function addColumn($colspan = 12, $offset = 0) : Column
     {
-        if (empty($this->currentRow) || ($this->currentRow->length + $colspan + $offset > 12)) {
+        if (empty($this->currentRow) || ($this->currentRowLength + $colspan + $offset > 12)) {
             $this->addRow();
         }
         $this->currentColumn = $this->currentRow->add(new Column($colspan, $offset));
-        $this->currentRow->length += $colspan;
+        $this->currentRowLength += $colspan;
         return $this->currentColumn;
     }
 

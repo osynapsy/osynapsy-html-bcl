@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Switcher;
+use Osynapsy\Bcl5\Switcher;
 require_once 'StringClean.php';
 
 final class SwitcherTest extends TestCase

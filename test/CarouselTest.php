@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Carousel;
+use Osynapsy\Bcl5\Carousel;
 require_once 'StringClean.php';
 
 final class CarouselTest extends TestCase
@@ -13,7 +13,7 @@ final class CarouselTest extends TestCase
     {
         $Carousel = new Carousel('carousel1');
         $this->assertEquals(
-            '<div id="carousel1"><div class="carousel-inner"></div></div>',
+            '<div id="carousel1" class="carousel slide"><div class="carousel-inner"></div></div>',
             $this->tabAndEolRemove((string) $Carousel)
         );
     }
@@ -21,9 +21,9 @@ final class CarouselTest extends TestCase
     public function testCarouselAddDiapositive(): void
     {
         $Carousel = new Carousel('carousel1');
-        $Carousel->setDataset([['1', 'image1', 'http://testurl']]);
+        $Carousel->addSlide(['1', 'image1'], 'http://testurl');
         $this->assertEquals(
-            '<div id="carousel1"><div class="carousel-inner"><div class="active"><img class="d-block w-100" src="http://testurl"></div></div></div>',
+            '<div id="carousel1" class="carousel slide"><div class="carousel-inner"><div class="carousel-item active"><img class="d-block w-100 opacity-25" src="http://testurl"><div class="carousel-caption d-none d-md-block"><h5>1</h5><p>image1</p></div></div></div></div>',
             $this->tabAndEolRemove((string) $Carousel)
         );
     }
@@ -31,9 +31,9 @@ final class CarouselTest extends TestCase
     public function testCarouselAddDiapositiveAndShowCommands(): void
     {
         $Carousel = new Carousel('carousel1', true);
-        $Carousel->setDataset([['1', 'image1', 'http://testurl']]);        
+        $Carousel->addSlide(['1', 'image1'], 'http://testurl');
         $this->assertEquals(
-            '<div id="carousel1"><div class="carousel-inner"><div class="active"><img class="d-block w-100" src="http://testurl"></div><a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">prev</span></a><a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">next</span></a></div></div>',
+            '<div id="carousel1" class="carousel slide"><div class="carousel-inner"><div class="carousel-item active"><img class="d-block w-100 opacity-25" src="http://testurl"><div class="carousel-caption d-none d-md-block"><h5>1</h5><p>image1</p></div></div></div><button name="" type="button" class="carousel-control-prev" data-bs-target="#carousel1" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">prev</span></button><button name="" type="button" class="carousel-control-next" data-bs-target="#carousel1" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">next</span></button></div>',
             $this->tabAndEolRemove((string) $Carousel)
         );
     }

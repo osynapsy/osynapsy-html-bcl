@@ -36,7 +36,7 @@ class Form extends AbstractComponent
     protected $footRight;
     protected $headCommand;
 
-    public function __construct($id, $classPanel = '\\Osynapsy\\Bcl\\Panel')
+    public function __construct($id, $classPanel = \Osynapsy\Bcl5\Panel::class)
     {
         parent::__construct('form', $id);
         $this->attributes(['name' => $id, 'method' => 'post', 'role' => 'form']);

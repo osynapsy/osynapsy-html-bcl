@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\ContextMenu;
+use Osynapsy\Bcl5\ContextMenu;
 require_once 'StringClean.php';
 
 final class ContextMenuTest extends TestCase

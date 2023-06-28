@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\PasswordBox;
+use Osynapsy\Bcl5\PasswordBox;
 //require_once 'StringClean.php';
 
 final class PasswordTest extends TestCase

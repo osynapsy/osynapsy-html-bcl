@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\LabelBox;
+use Osynapsy\Bcl5\LabelBox;
 require_once 'StringClean.php';
 
 final class LabelBoxTest extends TestCase

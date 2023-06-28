@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\ComboBox;
+use Osynapsy\Bcl5\ComboBox;
 require_once 'StringClean.php';
 
 final class ComboBoxTest extends TestCase

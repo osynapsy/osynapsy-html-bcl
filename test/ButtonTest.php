@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Button;
+use Osynapsy\Bcl5\Button;
 
 final class ButtonTest extends TestCase
 {

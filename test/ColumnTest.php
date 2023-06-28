@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Column;
+use Osynapsy\Bcl5\Column;
 
 final class ColumnTest extends TestCase
 {

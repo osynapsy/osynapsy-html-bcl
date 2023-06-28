@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Link;
+use Osynapsy\Bcl5\Link;
 
 final class LinkTest extends TestCase
 {

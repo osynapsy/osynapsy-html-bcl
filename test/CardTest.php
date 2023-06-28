@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Card;
+use Osynapsy\Bcl5\Card;
 require_once 'StringClean.php';
 
 final class CardTest extends TestCase

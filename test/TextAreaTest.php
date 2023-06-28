@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\TextArea;
+use Osynapsy\Bcl5\TextArea;
 require_once 'StringClean.php';
 
 final class TextAreaTest extends TestCase

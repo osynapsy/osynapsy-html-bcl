@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\ButtonGroup;
+use Osynapsy\Bcl5\ButtonGroup;
 require_once 'StringClean.php';
 
 final class ButtonGroupTest extends TestCase

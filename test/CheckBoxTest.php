@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\CheckBox;
+use Osynapsy\Bcl5\CheckBox;
 require_once 'StringClean.php';
 
 final class CheckBoxTest extends TestCase

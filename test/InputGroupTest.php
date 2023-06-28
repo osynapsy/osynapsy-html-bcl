@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\InputGroup;
+use Osynapsy\Bcl5\InputGroup;
 require_once 'StringClean.php';
 
 final class InputGroupTest extends TestCase

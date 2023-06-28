@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\CheckList;
+use Osynapsy\Bcl5\CheckList;
 require_once 'StringClean.php';
 
 final class CheckListTest extends TestCase

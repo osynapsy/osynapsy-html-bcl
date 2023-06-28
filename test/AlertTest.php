@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Osynapsy\Bcl\Alert;
+use Osynapsy\Bcl5\Alert;
 require_once 'StringClean.php';
 
 final class AlertTest extends TestCase
