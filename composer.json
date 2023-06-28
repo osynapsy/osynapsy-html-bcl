@@ -1,7 +1,7 @@
 {
-    "name": "osynapsy/osynapsy-html-bcl",
+    "name": "osynapsy/osynapsy-html-bcl5",
     "version": "0.1",
-    "homepage": "http://www.osynapsy.net/html-bcl",
+    "homepage": "http://www.osynapsy.net/html-bcl5",
     "type": "library",
     "description": "Osynapsy bootstrap components library",
     "keywords": ["Osynapsy", "Components library"],
@@ -10,7 +10,7 @@
         {
             "name": "Pietro Celeste",
             "email": "p.celeste@osynapsy.net",
-            "homepage": "https://github.com/osynapsy/osynapsy-html-bcl/wiki"
+            "homepage": "https://github.com/osynapsy/osynapsy-html-bcl5/wiki"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
     },
     "autoload" : {
         "psr-4": {
-            "Osynapsy\\Bcl\\": "src/Osynapsy/Bcl/"
+            "Osynapsy\\Bcl5\\": "src/Osynapsy/Bcl5/"
         }
     },
     "scripts": {
