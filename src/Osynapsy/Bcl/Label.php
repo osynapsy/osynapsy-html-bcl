@@ -12,10 +12,10 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\Hidden;
 
-class Label extends Base
+class Label extends AbstractComponent
 {
     protected $hiddenBox;
 

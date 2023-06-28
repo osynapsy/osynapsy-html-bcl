@@ -11,7 +11,7 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
 /**
@@ -19,7 +19,7 @@ use Osynapsy\Html\Tag;
  *
  * @author Pietro Celeste <p.celeste@osyanpsy.net>
  */
-class ButtonGroup extends Base
+class ButtonGroup extends AbstractComponent
 {
     protected $ul;
     protected $b1;

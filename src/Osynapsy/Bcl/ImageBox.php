@@ -11,15 +11,14 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\DOM;
 use Osynapsy\Html\Tag;
 
 class ImageBox extends FileBox
 {
     public function __construct($name)
-    {
-        DOM::requireJs('bcl/filebox/script.js');
-        \Osynapsy\Html\Component\Base::__construct('div', $name.'_container');
+    {        
+        parent::__construct('div', $name.'_container');
+        $this->requireJs('bcl/filebox/script.js');
         $this->addClass('bcl-filebox');
         $this->add($this->hiddenFactory($name));
         $this->add($this->previewFactory($name));

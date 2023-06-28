@@ -12,12 +12,11 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputHidden;
 use Osynapsy\Html\Component\InputFile;
-use Osynapsy\Html\DOM;
 
-class FileBox extends Base
+class FileBox extends AbstractComponent
 {
     protected $fileBox;
     protected $deleteCommand;    
@@ -26,9 +25,9 @@ class FileBox extends Base
     protected $hiddenBox;
 
     public function __construct($name)
-    {        
-        DOM::requireJs('bcl/filebox/script.js');
+    {                
         parent::__construct('div', $name.'_container');
+        $this->requireJs('bcl/filebox/script.js');
         $this->addClass('bcl-filebox');
         $this->add($this->hiddenFactory($name));        
         $this->add($this->inputGroupFactory($name));

@@ -11,10 +11,10 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
-class Panel extends Base
+class Panel extends AbstractComponent
 {
     private $panelSections = [
         'head' => null,

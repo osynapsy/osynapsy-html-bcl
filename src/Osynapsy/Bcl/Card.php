@@ -11,10 +11,10 @@
 namespace Osynapsy\Bcl;
 
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
-class Card extends Base
+class Card extends AbstractComponent
 {
     private $sections = [
         'header' => null,

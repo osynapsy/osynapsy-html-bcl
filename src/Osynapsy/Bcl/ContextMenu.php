@@ -12,18 +12,17 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
-use Osynapsy\Html\DOM;
+use Osynapsy\Html\Component\AbstractComponent;
 
-class ContextMenu extends Base
+class ContextMenu extends AbstractComponent
 {
     private $ul;
 
     public function __construct($id)
-    {
-        DOM::requireCss('bcl/contextmenu/style.css');
-        DOM::requireJs('bcl/contextmenu/script.js');
+    {        
         parent::__construct('div', $id);
+        $this->requireCss('bcl/contextmenu/style.css');
+        $this->requireJs('bcl/contextmenu/script.js');
         $this->addClass('BclContextMenu dropdown clearfix');
         $this->ul = $this->add($this->dropdownMenuFactory());                           
     }

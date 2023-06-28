@@ -12,7 +12,7 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputCheckBox;
 use Osynapsy\Html\Component\InputHidden;
 
@@ -21,7 +21,7 @@ use Osynapsy\Html\Component\InputHidden;
  *
  * @author Pietro Celeste <p.celeste@osynapsy.net>
  */
-class Switcher extends Base
+class Switcher extends AbstractComponent
 {
     protected $check;
     protected $label;

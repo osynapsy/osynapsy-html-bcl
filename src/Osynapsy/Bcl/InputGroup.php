@@ -12,7 +12,7 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 
 /**
  * Description of InputGroup
@@ -20,7 +20,7 @@ use Osynapsy\Html\Component\Base;
  * @author Pietro Celeste <p.celeste@osynapsy.net>
  */
 
-class InputGroup extends Base
+class InputGroup extends AbstractComponent
 {
     protected $textBox;
     protected $postfix;

@@ -11,23 +11,22 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\Hidden;
-use Osynapsy\Html\DOM;
 
 /**
  * 
  */
-class PanelAccordion extends Base
+class PanelAccordion extends AbstractComponent
 {
     private $panels = [];
     private $panelSelected;
     
     public function __construct($id)
-    {
-        DOM::requireCss('bcl/panelaccordion/style.css');
-        DOM::requireJs('bcl/panelaccordion/script.js');
+    {        
         parent::__construct('div', $id);
+        $this->requireCss('bcl/panelaccordion/style.css');
+        $this->requireJs('bcl/panelaccordion/script.js');
         $this->addClass('panel-group osy-panel-accordion');
         $this->attribute('role','tablist');        
         $this->panelSelected = filter_input(\INPUT_POST, $this->id);

@@ -12,14 +12,14 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 
 /**
  * Description of Dropdown
  *
  * @author Pietro Celeste <p.celeste@osynapsy.net>
  */
-class Dropdown extends Base
+class Dropdown extends AbstractComponent
 {
     const ALIGN_LEFT = 'left';
     const ALIGN_RIGHT = 'right';

@@ -11,19 +11,18 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputHidden;
-use Osynapsy\Html\DOM;
 
-class LabelBox extends Base
+class LabelBox extends AbstractComponent
 {
     protected $hiddenBox;
     protected $label;
 
     public function __construct($id, $label='')
-    {
-        DOM::requireCss('bcl/labelbox/style.css');
+    {        
         parent::__construct('div', $id.'_labelbox');
+        $this->requireCss('bcl/labelbox/style.css');
         $this->addClass('osynapsy-labelbox');
         $this->hiddenBox = $this->add(new InputHidden($id));
         $this->add($label);

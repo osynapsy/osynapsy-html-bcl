@@ -11,10 +11,10 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
-class DataTable extends Base
+class DataTable extends AbstractComponent
 {
     public $data = array();
     private $columns = array();

@@ -12,16 +12,15 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\Button;
-use Osynapsy\Html\DOM;
 
 /**
  * Description of Carousel
  *
  * @author Pietro Celeste <p.celeste@osynapsy.net>
  */
-class Carousel extends Base
+class Carousel extends AbstractComponent
 {
     private $showCommands;
     private $showIndicators;
@@ -33,7 +32,7 @@ class Carousel extends Base
         $this->showCommands = $showCommands;
         $this->showIndicators = $showIndicators;
         $this->addClass('carousel slide');
-        DOM::requireJsCode(
+        $this->requireScript(
             sprintf(
                 "const carousel = new bootstrap.Carousel(document.querySelector('#%s'), {interval: 3000, touch: false});",
                 $this->id

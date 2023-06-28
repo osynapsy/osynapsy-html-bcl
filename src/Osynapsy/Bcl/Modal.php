@@ -11,10 +11,10 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
-class Modal extends Base
+class Modal extends AbstractComponent
 {
     public $content;
     public $header;

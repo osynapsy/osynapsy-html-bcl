@@ -12,8 +12,7 @@
 namespace Osynapsy\Bcl;
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\DOM;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputHidden;
 
 /**
@@ -21,7 +20,7 @@ use Osynapsy\Html\Component\InputHidden;
  *
  * @author Pietro Celeste <p.celeste@osynapsy.net>
  */
-class Tab extends Base
+class Tab extends AbstractComponent
 {
     private $ul;
     private $nCard = 0;
@@ -31,9 +30,9 @@ class Tab extends Base
     private $id;
 
     public function __construct($id)
-    {
-        DOM::requireJs('bcl/tab/script.js');
+    {        
         parent::__construct('div');
+        $this->requireJs('bcl/tab/script.js');
         $this->id = $id;        
         $this->add(new InputHidden($id));
         $this->ul = $this->add(new Tag('ul'))->attributes([

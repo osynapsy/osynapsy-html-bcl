@@ -13,21 +13,20 @@ namespace Osynapsy\Bcl;
 
 
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\DOM;
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputHidden;
 
 //Costruttore del pannello html
-class Accordion extends Base
+class Accordion extends AbstractComponent
 {
     private $panels = [];
     private $defaultOpen  = 0;
 
     public function __construct($id, $defaultOpen = 0)
-    {
-        DOM::requireCss('bcl/accordion/style.css');
-        DOM::requireCss('bcl/panelaccordion/style.css');
-        parent::__construct('div', $id);        
+    {        
+        parent::__construct('div', $id);
+        $this->requireCss('bcl/accordion/style.css');
+        $this->requireCss('bcl/panelaccordion/style.css');
         $this->addClass('accordion osy-panel-accordion');
         $this->attribute('role', 'tablist');                
         $memoryOpen = filter_input(\INPUT_POST, $this->id);

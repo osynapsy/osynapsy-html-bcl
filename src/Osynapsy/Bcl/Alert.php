@@ -11,10 +11,10 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Component\InputHidden;
 
-class Alert extends Base
+class Alert extends AbstractComponent
 {
     const ALERT_INFO = 'alert-info';
     const ALERT_SUCCESS = 'alert-success';

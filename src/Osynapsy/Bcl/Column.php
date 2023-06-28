@@ -11,10 +11,10 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
 
-class Column extends Base
+class Column extends AbstractComponent
 {
     private $size = array(
         'lg' => array('width' => null, 'offset' => 0),

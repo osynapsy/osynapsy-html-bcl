@@ -11,15 +11,14 @@
 
 namespace Osynapsy\Bcl;
 
-use Osynapsy\Html\Component\Base;
+use Osynapsy\Html\Component\AbstractComponent;
 use Osynapsy\Html\Tag;
-use Osynapsy\Html\DOM;
 
 /**
  * Build a Bootstrap NavBar
  *
  */
-class NavBar extends Base
+class NavBar extends AbstractComponent
 {
     /**
      * Constructor require dom id of component
@@ -27,10 +26,10 @@ class NavBar extends Base
      * @param string $id
      */
     public function __construct($id, $class = null)
-    {
-        DOM::requireCss('bcl/navbar/style.css');
-        DOM::requireJs('bcl/navbar/script.js');
+    {        
         parent::__construct('nav', $id);
+        $this->requireCss('bcl/navbar/style.css');
+        $this->requireJs('bcl/navbar/script.js');
         $this->setData([],[]);        
         if (!empty($class)) {
             $this->addClass($class);
